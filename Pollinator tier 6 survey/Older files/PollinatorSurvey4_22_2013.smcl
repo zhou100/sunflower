@@ -1,0 +1,141 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}E:\BIP\PollinationSurvey\PollinatorSurvey4_22_2013.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}22 Apr 2013, 15:19:27
+
+{com}. help xtset
+
+. xtset year
+{txt}{col 8}panel variable:  {res}year (unbalanced)
+
+{com}. help balance panel
+
+. count if broker_id==1
+{res}    3
+
+{com}. drop in 9/15
+{txt}(7 observations deleted)
+
+{com}. drop in 15/16
+{txt}(2 observations deleted)
+
+{com}. drop in 15
+{txt}(1 observation deleted)
+
+{com}. drop in 16
+{txt}(1 observation deleted)
+
+{com}. count broker_id
+{err}varlist not allowed
+{txt}{search r(101):r(101);}
+
+{com}. tab broker_id
+
+  {txt}Broker_ID {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}          3        4.84        4.84
+{txt}          2 {c |}{res}          3        4.84        9.68
+{txt}          3 {c |}{res}          3        4.84       14.52
+{txt}          4 {c |}{res}          3        4.84       19.35
+{txt}          5 {c |}{res}          3        4.84       24.19
+{txt}          6 {c |}{res}          3        4.84       29.03
+{txt}          7 {c |}{res}          3        4.84       33.87
+{txt}          8 {c |}{res}          3        4.84       38.71
+{txt}          9 {c |}{res}          2        3.23       41.94
+{txt}         10 {c |}{res}          2        3.23       45.16
+{txt}         11 {c |}{res}          2        3.23       48.39
+{txt}         12 {c |}{res}          1        1.61       50.00
+{txt}         13 {c |}{res}          1        1.61       51.61
+{txt}         15 {c |}{res}          1        1.61       53.23
+{txt}         16 {c |}{res}          3        4.84       58.06
+{txt}         17 {c |}{res}          3        4.84       62.90
+{txt}         18 {c |}{res}          3        4.84       67.74
+{txt}         19 {c |}{res}          3        4.84       72.58
+{txt}         20 {c |}{res}          3        4.84       77.42
+{txt}         21 {c |}{res}          3        4.84       82.26
+{txt}         22 {c |}{res}          2        3.23       85.48
+{txt}         23 {c |}{res}          2        3.23       88.71
+{txt}         24 {c |}{res}          1        1.61       90.32
+{txt}         25 {c |}{res}          2        3.23       93.55
+{txt}         27 {c |}{res}          1        1.61       95.16
+{txt}         28 {c |}{res}          1        1.61       96.77
+{txt}         29 {c |}{res}          1        1.61       98.39
+{txt}         30 {c |}{res}          1        1.61      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}         62      100.00
+
+{com}. tab lastname
+
+  {txt}Last Name {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+   Anderson {c |}{res}          1        1.61        1.61
+    {txt}Beekman {c |}{res}          2        3.23        4.84
+     {txt}Brandi {c |}{res}          6        9.68       14.52
+      {txt}Brant {c |}{res}          3        4.84       19.35
+      {txt}Brown {c |}{res}          2        3.23       22.58
+   {txt}Browning {c |}{res}          3        4.84       27.42
+    {txt}Buckley {c |}{res}          1        1.61       29.03
+     {txt}Burket {c |}{res}          1        1.61       30.65
+    {txt}Carroll {c |}{res}          2        3.23       33.87
+     {txt}Cosyns {c |}{res}          3        4.84       38.71
+        {txt}Cox {c |}{res}          1        1.61       40.32
+     {txt}Felker {c |}{res}          1        1.61       41.94
+    {txt}Glidden {c |}{res}          1        1.61       43.55
+     {txt}Godlin {c |}{res}          3        4.84       48.39
+   {txt}Johnston {c |}{res}          3        4.84       53.23
+     {txt}Lohman {c |}{res}          3        4.84       58.06
+   {txt}Mallican {c |}{res}          1        1.61       59.68
+     {txt}Newton {c |}{res}          1        1.61       61.29
+   {txt}Olivarez {c |}{res}          3        4.84       66.13
+     {txt}Qualls {c |}{res}          3        4.84       70.97
+      {txt}Rosso {c |}{res}          2        3.23       74.19
+  {txt}Sullivian {c |}{res}          2        3.23       77.42
+   {txt}Sundberg {c |}{res}          3        4.84       82.26
+     {txt}Tassey {c |}{res}          3        4.84       87.10
+      {txt}Terry {c |}{res}          2        3.23       90.32
+    {txt}Traynor {c |}{res}          3        4.84       95.16
+    {txt}Wardell {c |}{res}          3        4.84      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}         62      100.00
+
+{com}. sort lastname
+
+. save "E:\BIP\PollinationSurvey\PollinatorSurvey2011_2013_droppedUnobserved.dta"
+{txt}file E:\BIP\PollinationSurvey\PollinatorSurvey2011_2013_droppedUnobserved.dta saved
+
+{com}. drop in 1/4
+{txt}(4 observations deleted)
+
+{com}. drop in 10/11
+{txt}(2 observations deleted)
+
+{com}. drop in 13/14
+{txt}(2 observations deleted)
+
+{com}. drop in 13/14
+{txt}(2 observations deleted)
+
+{com}. drop in 16/17
+{txt}(2 observations deleted)
+
+{com}. drop in 16
+{txt}(1 observation deleted)
+
+{com}. drop in 25/26
+{txt}(2 observations deleted)
+
+{com}. drop in 31/34
+{txt}(4 observations deleted)
+
+{com}. drop in 37/38
+{txt}(2 observations deleted)
+
+{com}. save "E:\BIP\PollinationSurvey\PollinatorSurvey2011_2013_ObserveAll3years.dta"
+{txt}file E:\BIP\PollinationSurvey\PollinatorSurvey2011_2013_ObserveAll3years.dta saved
+
+{com}. save "E:\BIP\PollinationSurvey\PollinatorSurvey2011_2013_ObserveAll3years.dta", replace
+{txt}file E:\BIP\PollinationSurvey\PollinatorSurvey2011_2013_ObserveAll3years.dta saved
+
+{com}. exit, clear
