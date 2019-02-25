@@ -1,0 +1,188 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}\\tsclient\Macint1\Users\holt345\Desktop\pollinatorsurveylog4-22-13.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}23 Apr 2013, 10:57:42
+
+{com}. total n_placed13
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     14
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed13 {c |}{col 14}{res}{space 2}   319161{col 26}{space 2} 92697.87{col 37}{space 5} 118899.4{col 51}{space 3} 519422.6
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. total n_placed13
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     14
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed13 {c |}{col 14}{res}{space 2}   319161{col 26}{space 2} 92697.87{col 37}{space 5} 118899.4{col 51}{space 3} 519422.6
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. total n_placed12 if year==2012
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     14
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed12 {c |}{col 14}{res}{space 2}   314672{col 26}{space 2} 90748.53{col 37}{space 5} 118621.7{col 51}{space 3} 510722.3
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. total n_placed11 if year==2011
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed11 {c |}{col 14}{res}{space 2}   267049{col 26}{space 2}  86698.6{col 37}{space 5} 78148.98{col 51}{space 3}   455949
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. sum avg_col11 if year=2011
+{err}invalid syntax
+{txt}{search r(198):r(198);}
+
+{com}. tab avg_col11 if year=2011
+{err}invalid syntax
+{txt}{search r(198):r(198);}
+
+{com}. sort year
+
+. sort year
+
+. sort lastname
+
+. drop in 19/21
+{txt}(3 observations deleted)
+
+{com}. save "\\tsclient\Macint1\Users\holt345\Desktop\PollinatorSurvey2011_2013_ObserveAll3years.dta", replace
+{txt}file \\tsclient\Macint1\Users\holt345\Desktop\PollinatorSurvey2011_2013_ObserveAll3years.dta saved
+
+{com}. total n_placed13
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed13 {c |}{col 14}{res}{space 2}   262161{col 26}{space 2} 85318.47{col 37}{space 5} 76268.02{col 51}{space 3}   448054
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. total n_placed12 if year==2012
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed12 {c |}{col 14}{res}{space 2}   261872{col 26}{space 2} 84920.86{col 37}{space 5} 76845.34{col 51}{space 3} 446898.7
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. total n_placed11 if year==2011
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed11 {c |}{col 14}{res}{space 2}   267049{col 26}{space 2}  86698.6{col 37}{space 5} 78148.98{col 51}{space 3}   455949
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. total n_placed10
+{res}
+{txt}Total estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}      Total{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 2}n_placed10 {c |}{col 14}{res}{space 2}   243412{col 26}{space 2} 81994.13{col 37}{space 5} 64762.13{col 51}{space 3} 422061.9
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean avg_col_acre if year==2013
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+avg_col_acre {c |}{col 14}{res}{space 2} 1.953846{col 26}{space 2} .0696745{col 37}{space 5} 1.802038{col 51}{space 3} 2.105654
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean grade if year==2013
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res}     13
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 7}grade {c |}{col 14}{res}{space 2} 8.230769{col 26}{space 2} .4689575{col 37}{space 5} 7.208999{col 51}{space 3}  9.25254
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean grade if year==2013 [fweight = n_placed13]
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res} 262161
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 7}grade {c |}{col 14}{res}{space 2} 9.260474{col 26}{space 2} .0029411{col 37}{space 5} 9.254709{col 51}{space 3} 9.266238
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean grade if year==2012 [fweight = n_placed12]
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res} 261872
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 7}grade {c |}{col 14}{res}{space 2} 10.60651{col 26}{space 2} .0026063{col 37}{space 5}  10.6014{col 51}{space 3} 10.61162
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean grade if year==2011 [fweight = n_placed11]
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res} 267049
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 7}grade {c |}{col 14}{res}{space 2} 10.09117{col 26}{space 2} .0016695{col 37}{space 5} 10.08789{col 51}{space 3} 10.09444
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean avg_price if year==2013 [fweight = n_placed13]
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res} 262161
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}avg_price {c |}{col 14}{res}{space 2} 154.6039{col 26}{space 2}  .026953{col 37}{space 5} 154.5511{col 51}{space 3} 154.6567
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean avg_price if year==2012 [fweight = n_placed12]
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res} 261872
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}avg_price {c |}{col 14}{res}{space 2} 154.1623{col 26}{space 2}  .019173{col 37}{space 5} 154.1248{col 51}{space 3} 154.1999
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. mean avg_price if year==2011 [fweight = n_placed11]
+{res}
+{txt}Mean estimation{col 37}Number of obs{col 54}= {res} 267049
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 14}{hline 12}
+{col 14}{c |}       Mean{col 26}   Std. Err.{col 38}     [95% Con{col 51}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 14}{hline 12}
+{space 3}avg_price {c |}{col 14}{res}{space 2} 152.8023{col 26}{space 2} .0214853{col 37}{space 5} 152.7602{col 51}{space 3} 152.8444
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 14}{hline 12}
+
+{com}. 
