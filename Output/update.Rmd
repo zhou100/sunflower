@@ -16,21 +16,20 @@ Next analysis steps will be to:
 
     (1) Include data from years 2009-14
     
+    
+    We only have observations 2011-2015. 
+ 
+    
+    
+    
     (2) Account for bloom period, when we expect effects of sunflower pollen to occur, in two ways:
     
-        (a) restrict analysis to data from August & September only, when sunflower is in bloom 
-        comparing same location with blooming vs no blooming
+        (a) restrict analysis to data from August & September only, when sunflower is in bloom, comparing same location with blooming vs no blooming
 
     
         (b) include all months and an interaction term between acres of sunflower and month, to account for effects of location. 
         
-        exposure in previous months
 
-        consider spatial weighting in the future 
-
-      natural pollen > commercial pollen
-
-    limiting to september and oct interaction
     
     (3) Determine if there are enough virus data points to include viruses as responses 
     virus variable more significiant (testing is expensive)
@@ -43,7 +42,6 @@ Next analysis steps will be to:
     (1) Hannah says that apiary size has a big effect on management style and pathogen/pest pressure. It may be a good idea to include number of colonies in the apiary as a covariate.
 
     (2) I forgot to discuss 'number of alive bees', which your document listed as a response. We are finding it very hard to use measures of colony growth/size in our apiary study since beekeepers often move frames. It would make sense to use to drop this response and just focus on pathogens/pests (Nosema, mites, viruses).
-    (3) mites explode at the end of the year
 
  
   
