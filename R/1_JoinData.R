@@ -31,15 +31,16 @@ bee.1415.df = bee.1415.df %>%
 bee.1415.join = bee.1415.df %>% 
   mutate(nosema = nosemaloadperbeeinmillions) %>%
   mutate(mites=mitesfound) %>%
-  dplyr::select(sunflower,month,month8,month9,year,nosema,mites,state,totalarea,average_mintemp,average_precip) %>% 
+  mutate( colonysize=as.numeric(coloniesinapiary)) %>%
+  dplyr::select(sunflower,month,colonysize,month8,month9,year,nosema,mites,state,totalarea,average_mintemp,average_precip) %>% 
   arrange(year)  
 
 
 bee.df = bind_rows(bee.0914.sub,bee.1415.join)
-
-
-sapply(bee.0913.join, class)
-sapply(bee.1415.join, class)
+# 
+# 
+# sapply(bee.0913.join, class)
+# sapply(bee.1415.join, class)
 
 
 bee.df = bee.df %>% mutate(sunper = sunflower/totalarea)
