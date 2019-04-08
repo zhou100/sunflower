@@ -35,18 +35,22 @@ bee1115 = bee1115 %>% mutate(month12 = ifelse(month==12,1,0))
 
 
 bee.bloom.month = bee1115 %>% filter(month==8|month==9)
+require(MASS)
+require(pscl)
 
 
-linearMod_mites1 <- lm(mites ~ log(sunflower+1)   + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
-linearMod_mites2 <- lm(mites ~ sun.dum  + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
-linearMod_mites3 <- lm(mites ~ sun.dum2  + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
+linearMod_mites1 <- lm(mites ~ log(sunflower+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year), data=bee.bloom.month)
+linearMod_mites2 <- glm(mites ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year), family="poisson",data=bee.bloom.month)
+linearMod_mites3 <- glm.nb(mites ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year),data=bee.bloom.month)
+ 
 stargazer::stargazer(linearMod_mites1,linearMod_mites2,linearMod_mites3,type="text")
 
 
 
+
+
+
 linearMod_nosema1 <- lm(nosema ~ log(sunflower+1)  + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
-linearMod_nosema2 <- lm(nosema ~ sun.dum  + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
-linearMod_nosema3 <- lm(nosema ~ sun.dum2  + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
 stargazer::stargazer(linearMod_nosema1,linearMod_nosema2,linearMod_nosema3,type="text")
 
 
@@ -127,7 +131,7 @@ allmonth_mites3 <- lm(mites ~ sun.dum2*bloom_dummy     + average_mintemp + avera
 stargazer::stargazer(allmonth_mites1,allmonth_mites2,allmonth_mites3,type="text")
 
 
-allmonth_nosema1 <- lm(nosema ~ log(sunflower+1) *bloom_dummy + average_mintemp + average_precip+colonysize , data=bee1415.new)
+allmonth_nosema1 <- lm(log(nosema+1) ~ log(sunflower+1) *bloom_dummy + average_mintemp + average_precip+colonysize , data=bee1415.new)
 allmonth_nosema2 <- lm(nosema ~ sun.dum*bloom_dummy  + average_mintemp + average_precip+colonysize , data=bee1415.new)
 allmonth_nosema3 <- lm(nosema ~ sun.dum2*bloom_dummy     + average_mintemp + average_precip +colonysize, data=bee1415.new)
 stargazer::stargazer(allmonth_nosema1,allmonth_nosema2,allmonth_nosema3,type="text")
