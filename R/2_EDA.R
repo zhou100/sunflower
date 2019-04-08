@@ -39,33 +39,119 @@ require(MASS)
 require(pscl)
 
 
-linearMod_mites1 <- lm(mites ~ log(sunflower+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year), data=bee.bloom.month)
-linearMod_mites2 <- glm(mites ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year), family="poisson",data=bee.bloom.month)
-linearMod_mites3 <- glm.nb(mites ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year),data=bee.bloom.month)
+linearMod_mites1 <- lm(log(mites+1) ~ log(sunflower+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year), data=bee.bloom.month)
+linearMod_mites2 <- glm(log(mites+1)  ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year), family="poisson",data=bee.bloom.month)
+linearMod_mites3 <- glm.nb(log(mites+1)  ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year),data=bee.bloom.month)
  
 stargazer::stargazer(linearMod_mites1,linearMod_mites2,linearMod_mites3,type="text")
 
 
+pred.mites.ols = as.data.frame(predict(linearMod_mites1))
+pred.mites.poisson = as.data.frame(predict(linearMod_mites2, type="response"))
+pred.mites.nb = as.data.frame(predict(linearMod_mites3, type="response"))
 
 
-
-
-linearMod_nosema1 <- lm(nosema ~ log(sunflower+1)  + average_mintemp + average_precip + as.factor(month), data=bee.bloom.month)
+linearMod_nosema1 <- lm(nosema ~ log(sunflower+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year), data=bee.bloom.month)
+linearMod_nosema2 <- glm(nosema ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year), family="poisson",data=bee.bloom.month)
+linearMod_nosema3 <- glm.nb(nosema ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year),data=bee.bloom.month)
 stargazer::stargazer(linearMod_nosema1,linearMod_nosema2,linearMod_nosema3,type="text")
+
+
+mites.actual = as.data.frame(log(bee.bloom.month$mites+1))
+names(mites.actual) = "mites_actual"
+names(pred.mites.ols) = "mites_ols_pred"
+names(pred.mites.poisson) = "mites_poisson_pred"
+names(pred.mites.nb) = "mites_nb_pred"
+
+
+
+d<-cbind(mites.actual,pred.mites.ols)
+ggplot(d, aes(mites_actual, mites_ols_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") 
+
+
+d<-cbind(mites.actual,pred.mites.nb)
+ggplot(d, aes(mites_actual, mites_nb_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") 
+
+ 
+d<-cbind(mites.actual,pred.mites.poisson)
+ggplot(d, aes(mites_actual, mites_poisson_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") 
+
+
+
+
+
 
 
 
 # (b) include all months and an interaction term between acres of sunflower and month, to account for effects of location. 
-allmonth_mites1 <- lm(mites ~ log(sunflower+1) *bloom_dummy + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 , data=bee1115)
-allmonth_mites2 <- lm(mites ~ sun.dum*bloom_dummy  + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 , data=bee1115)
-allmonth_mites3 <- lm(mites ~ sun.dum2*bloom_dummy     + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 , data=bee1115)
+allmonth_mites1 <- lm(mites~ log(sunflower+1) *bloom_dummy + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 +as.factor(year) , data=bee1115)
+allmonth_mites2 <- glm(mites  ~ log(sunflower+1) *bloom_dummy  + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 +as.factor(year) , family="poisson",data=bee1115)
+allmonth_mites3 <- glm.nb(mites  ~log(sunflower+1) *bloom_dummy   + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 +as.factor(year) , data=bee1115)
 stargazer::stargazer(allmonth_mites1,allmonth_mites2,allmonth_mites3,type="text")
 
 
 allmonth_nosema1 <- lm(nosema ~ log(sunflower+1) *bloom_dummy + average_mintemp + average_precip , data=bee1115)
-allmonth_nosema2 <- lm(nosema ~ sun.dum*bloom_dummy  + average_mintemp + average_precip , data=bee1115)
-allmonth_nosema3 <- lm(nosema ~ sun.dum2*bloom_dummy     + average_mintemp + average_precip , data=bee1115)
+allmonth_nosema2 <- glm(nosema ~ sun.dum*bloom_dummy  + average_mintemp + average_precip , data=bee1115)
+allmonth_nosema3 <- glm.nb(nosema ~ sun.dum2*bloom_dummy     + average_mintemp + average_precip , data=bee1115)
 stargazer::stargazer(allmonth_nosema1,allmonth_nosema2,allmonth_nosema3,type="text")
+
+
+pred.mites.ols = as.data.frame(predict(allmonth_mites1))
+pred.mites.poisson = as.data.frame(predict(allmonth_mites2, type="response"))
+pred.mites.nb = as.data.frame(predict(allmonth_mites3, type="response"))
+
+
+
+mites.actual = as.data.frame(bee1115$mites)
+mites.actual =as.data.frame (mites.actual[-2687,])
+colnames(mites.actual)[1] = "mites_actual"
+names(pred.mites.ols) = "mites_ols_pred"
+names(pred.mites.poisson) = "mites_poisson_pred"
+names(pred.mites.nb) = "mites_nb_pred"
+
+
+
+d<-cbind(mites.actual,pred.mites.ols)
+ggplot(d, aes(mites_actual, mites_ols_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") 
+
+
+d<-cbind(mites.actual,pred.mites.nb)
+ggplot(d, aes(mites_actual, mites_nb_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") 
+
+
+d<-cbind(mites.actual,pred.mites.poisson)
+ggplot(d, aes(mites_actual, mites_poisson_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") 
+
+
+
+bee1115 %>% 
+
+
+allmonth_mites1 <- lm(mites~ log(sunflower+1) *bloom_dummy + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 +as.factor(year) , data=bee1115)
+allmonth_mites2 <- glm(mites  ~ log(sunflower+1) *bloom_dummy  + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 +as.factor(year) , family="poisson",data=bee1115)
+allmonth_mites3 <- glm.nb(mites  ~log(sunflower+1) *bloom_dummy   + average_mintemp + average_precip + month1 + month2 + month3 + month4 + month5+ month6 + month7 +month10 + month11 +as.factor(year) , data=bee1115)
+stargazer::stargazer(allmonth_mites1,allmonth_mites2,allmonth_mites3,type="text")
+
+
+
 
 
 
@@ -116,10 +202,9 @@ linearMod_mites3 <- lm(mites ~ sun.dum2  + average_mintemp + average_precip+colo
 stargazer::stargazer(linearMod_mites1,linearMod_mites2,linearMod_mites3,type="text")
 
 
-
-linearMod_nosema1 <- lm(nosema ~ log(sunflower+1)  + average_mintemp + average_precip + as.factor(month)+colonysize, data=bee.bloom.month1415)
-linearMod_nosema2 <- lm(nosema ~ sun.dum  + average_mintemp + average_precip + as.factor(month)+colonysize, data=bee.bloom.month1415)
-linearMod_nosema3 <- lm(nosema ~ sun.dum2  + average_mintemp + average_precip + as.factor(month)+colonysize, data=bee.bloom.month1415)
+linearMod_nosemas1 <- lm(nosemas ~ log(sunflower+1)   + average_mintemp + average_precip+colonysize, data=bee.bloom.month1415)
+linearMod_nosemas2 <- lm(nosemas ~ sun.dum  + average_mintemp + average_precip +colonysize, data=bee.bloom.month1415)
+linearMod_nosemas3 <- lm(nosemas ~ sun.dum2  + average_mintemp + average_precip+colonysize, data=bee.bloom.month1415)
 stargazer::stargazer(linearMod_nosema1,linearMod_nosema2,linearMod_nosema3,type="text")
 
 
@@ -141,6 +226,11 @@ stargazer::stargazer(allmonth_nosema1,allmonth_nosema2,allmonth_nosema3,type="te
 
 
 
+d<-cbind(actuals,pred)
+ggplot(d, aes(logFCS_cluster, logFCS_pred )) +
+  geom_point(shape = 16, size = 3, show.legend = FALSE) +
+  theme_minimal() + geom_abline(intercept = 0, slope = 1)+
+  scale_color_brewer(palette="Dark2") +annotate(geom = "text", size = 5,x = 4.2, y = 3.5, label = "R squares = 0.579") 
 
 
 
