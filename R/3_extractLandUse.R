@@ -24,34 +24,4 @@ bee.data.coord = bee.data.coord %>% filter(!is.na(x) & !is.na(y))
 write.csv(bee.data.coord,"data/clean/bee_geocode.csv",row.names = FALSE)
  
 
-
-library(rgdal)  # for vector work; sp package should always load with rgdal.
-library (raster)   # for metadata/attributes- vectors or rasters
-
-
-
-buffer = readOGR("Output/graph/buffer_4mile_clip.shp")
-
-plot(buffer)
-
-uass <- raster("C:/Users/Administrator/Desktop/2012_30m_cdls.img")
-
-sun <- raster("C:/Users/Administrator/Desktop/sun.tif")
-
-plot(sun)
-
-(uass)
-
-plot(uass[uass==6])
-
-uass[uass!=6]=NA
-uass$X2012_30m_cdls@data@attributes[[1]] 
-
-raster::subset(uass,uass$X2012_30m_cdls@data@attributes[[1]]$ID==6)
-
-
-uass$X2012_30m_cdls@data[uass$X2012_30m_cdls@data@attributes[[1]]$ID==6]
-
-uass$X2012_30m_cdls@data@attributes[[1]]$ID[uass$X2012_30m_cdls@data@attributes[[1]]$ID==6]
-
-unique(uass$X2012_30m_cdls)
+ 
