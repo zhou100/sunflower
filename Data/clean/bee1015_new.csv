@@ -1,4 +1,4 @@
-"sampleid","y","x","sunflower","month","year","nosema","mites","state","totalarea","average_mintemp","average_precip","month8","month9","colonysize","sf_2mile_percent","sf_2mile_acres"
+"sampleid","y","x","sunflower","month","year","nosema","mites","state","totalarea","average_mintemp","average_precip","month8","month9","colonysize","sunflower_2mile_percent_original","sunflower_2mile_acres_original"
 "TN 13-2010",35.49336,-86.48185,0,9,2010,0,8.5953875,"TN",32463284.3789062,14,29,0,1,NA,0,0
 "MI 13-2010",43.63423,-82.736313,0,10,2010,0.016666668,0.47923324,"MI",32458457.2304688,10,112.77913,0,0,NA,0,0
 "MI 16-2010",42.77483,-85.016609,0,8,2010,0.016666668,3.2051282,"MI",32453556.4101562,16,32,1,0,NA,0,0

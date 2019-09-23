@@ -5,7 +5,7 @@ library(readr)
 
 
 #(1) Include data from years 2009-14 (We only have observations 2011-2015)
-bee1115 <- read_csv("Data/clean/bee1015_new.csv")
+bee1115 <- read_csv("Data/dataset_4miles.csv")
 
 nrow(bee1115)
 
@@ -34,18 +34,25 @@ bee1115 = bee1115 %>% mutate(month12 = ifelse(month==12,1,0))
 # comparing same location with blooming vs no blooming
 
 bee.bloom.month = bee1115 %>% filter(month==8|month==9)
-require(MASS)
-require(pscl)
 
 ############################################################################+
 # Mites regressions (bloom months)
 ############################################################################
+require(MASS)
+require(pscl)
+linearMod_mites_2miles <- lm(log(mites+1) ~ log(sf_4miles_acres+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year)+as.factor(state), data=bee.bloom.month)
+linearMod_mites_4miles <- lm(log(mites+1) ~ log(sf_2miles_acres+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year)+as.factor(state), data=bee.bloom.month)
 
-linearMod_mites1 <- lm(log(mites+1) ~ log(sunflower+1)   + average_mintemp + average_precip   + as.factor(month) + as.factor(year)+as.factor(state), data=bee.bloom.month)
-linearMod_mites2 <- glm(log(mites+1)  ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year)+as.factor(state), family="poisson",data=bee.bloom.month)
-linearMod_mites3 <- glm.nb(log(mites+1)  ~ log(sunflower+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year)+as.factor(state),data=bee.bloom.month)
+stargazer::stargazer(linearMod_mites_2miles,linearMod_mites_4miles,type="text")
+
+
+
+
+
+
+linearMod_mites2 <- glm(log(mites+1)  ~ log(sf_4miles_acres+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year)+as.factor(state), family="poisson",data=bee.bloom.month)
+linearMod_mites3 <- glm.nb(log(mites+1)  ~ log(sf_4miles_acres+1)   + average_mintemp + average_precip  + as.factor(month) + as.factor(year)+as.factor(state),data=bee.bloom.month)
  
-stargazer::stargazer(linearMod_mites1,linearMod_mites2,linearMod_mites3,type="text")
 
 # save predicted values 
 pred.mites.ols = as.data.frame(predict(linearMod_mites1))
