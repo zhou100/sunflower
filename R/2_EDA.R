@@ -7,11 +7,6 @@ library(readr)
 #(1) Include data from years 2009-14 (We only have observations 2011-2015)
 bee1115 <- read_csv("Data/dataset_4miles.csv")
 
-nrow(bee1115)
-
-bee1115 = bee1115 %>% mutate(sun.dum = sunflower>900)
-bee1115 = bee1115 %>% mutate(sun.dum2 = sun_acres>1)
-
 
 bee1115 = bee1115 %>% mutate(bloom_dummy = ifelse(month==8|month==9,1,0))
 bee1115 = bee1115 %>% mutate(month1 = ifelse(month==1,1,0))

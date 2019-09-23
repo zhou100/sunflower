@@ -155,3 +155,63 @@ summary(dataset.full$sf_2miles_acres)
 summary(dataset.full$sunflower_2mile_acres_original)
 
 write.csv(dataset.full,"Data/dataset_4miles.csv",row.names = FALSE)
+
+
+
+
+
+### Formating ##
+
+dataset.full = read_csv("Data/dataset_4miles.csv")
+
+library(ggmap)
+library(revgeo)
+ 
+# takes a long time to run
+# cities <- revgeo(longitude = dataset.full$x, latitude= dataset.full$y, provider =  'photon', output = 'frame')  
+
+cities$lon = dataset.full$x  
+cities$lat = dataset.full$y  
+cities$id = dataset.full$sampleid
+
+cities$stateabb= state.abb[match(cities$state,state.name)]
+
+
+write.csv( cities,"Data/clean/cities.csv", row.names = FALSE)
+
+
+# read 
+city = read_csv("Data/clean/cities.csv")
+
+state_abb = city %>% 
+  mutate(sampleid = id) %>%
+  mutate(x = lon) %>%
+  mutate(y = lat) %>%
+  mutate(stateabb_map = stateabb) %>%
+  select(sampleid,x,y,stateabb_map) 
+  
+dataset.full = read_csv("Data/dataset_4miles.csv")
+  
+
+dataset.full = dataset.full %>% left_join(state_abb)
+
+# missing stateabb info because out of no where
+
+
+dataset.full= dataset.full %>% 
+  mutate( stateabb_map = if_else( is.na(stateabb_map),state , stateabb_map) ) %>%
+  mutate( flag = if_else(stateabb_map!=state,1,0 ) ) 
+
+# check number of discrepancies 
+table(dataset.full$flag)
+
+summary(dataset.full$flag)
+
+dataset.full = dataset.full %>% mutate( dist = sf_2miles_acres - sunflower_2mile_acres_original)
+
+dist_by_flag = dataset.full %>%
+group_by(flag) %>%
+summarise(mean=mean(dist), sd=sd(dist))
+
+   
+write.csv(dataset.full,"Data/dataset_4miles.csv",row.names = FALSE)
