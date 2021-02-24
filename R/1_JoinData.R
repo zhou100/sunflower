@@ -9,6 +9,11 @@ library(readr)
 # read 09-14 data
 bee.0914 <- read_dta("Data/raw/bee data 09-14 v1.12.dta")
 
+attributes(bee.0914$mites) 
+
+library(expss)
+lapply(bee.0914, var_lab)
+
  # 
  bee.0914.sub = bee.0914 %>% 
    filter(!is.na(mites) & !is.na(sunflower)) %>%
@@ -24,7 +29,7 @@ bee.0914 <- read_dta("Data/raw/bee data 09-14 v1.12.dta")
 bee.1415 <- read_dta("Data/raw/bee data new 14-15 v.5.25.dta")
 
 bee.1415.df = as.data.frame(bee.1415) %>% 
-  filter(!is.na(sunflower) & !is.na(nosemaloadperbeeinmillions) & !is.na(mitesfound))   
+  filter(!is.na(sunflower) & !is.na(nosemaloadperbeeinmillions) & !is.na(mitesper100bees))   
 
 # generate month 8/9 dummies 
 bee.1415.df = bee.1415.df %>% 
@@ -34,7 +39,7 @@ bee.1415.df = bee.1415.df %>%
 # formatting variables 
 bee.1415.join = bee.1415.df %>% 
   mutate(nosema = nosemaloadperbeeinmillions) %>%
-  mutate(mites=mitesfound) %>%
+  mutate(mites=mitesper100bees) %>%
   mutate( colonysize=as.numeric(coloniesinapiary)) %>%
   dplyr::select(sampleid,y,x,sunflower,month,colonysize,month8,month9,year,nosema,mites,state,totalarea,average_mintemp,average_precip) %>% 
   mutate( x= as.numeric(x)) %>%
